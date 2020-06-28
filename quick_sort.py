@@ -1,6 +1,3 @@
-import random
-
-
 def swap(array, a, b):
     buf = array[a]
     array[a] = array[b]
@@ -8,7 +5,7 @@ def swap(array, a, b):
 
 
 def partition(array, l, r):
-    x = (l+r)//2
+    x = (l + r) // 2
     swap(array, l, x)
     j = l
     for i in range(l + 1, r + 1):
@@ -19,13 +16,16 @@ def partition(array, l, r):
     return j
 
 
-def quicksort(array, l, r):
+def quick_sort(array, l, r):
     if l < r:
         m = partition(array, l, r)
-        quicksort(array, l, m)
-        quicksort(array, m+1, r)
+        quick_sort(array, l, m)
+        quick_sort(array, m + 1, r)
 
 
-s = [2, 6, 7, 3, 9, 2, 1]
-quicksort(s, 0, len(s) - 1)
-print(*s)
+def quick_sort_helper(array):
+    length = len(array)
+    return quick_sort(array, 0, length - 1)
+
+
+print(quick_sort_helper([2, 6, 7, 3, 9, 2, 1]))
