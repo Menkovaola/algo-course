@@ -28,7 +28,7 @@ def quick_sort_helper(array):
     quick_sort(array, 0, length - 1)
     return array
 
-
+print(quick_sort_helper([2, 6, 7, 2, 1]))
 print(quick_sort_helper([2, 6, 7, 3, 9, 2, 1]))
 print(quick_sort_helper([3]))
 print(quick_sort_helper([3, 2, 1]))
