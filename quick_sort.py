@@ -9,7 +9,7 @@ def partition(array, l, r):
     swap(array, l, x)
     j = l
     for i in range(l + 1, r + 1):
-        if array[i] <= array[l]:
+        if array[i] < array[l]:
             j += 1
             swap(array, i, j)
     swap(array, l, j)
@@ -25,7 +25,12 @@ def quick_sort(array, l, r):
 
 def quick_sort_helper(array):
     length = len(array)
-    return quick_sort(array, 0, length - 1)
+    quick_sort(array, 0, length - 1)
+    return array
 
 
 print(quick_sort_helper([2, 6, 7, 3, 9, 2, 1]))
+print(quick_sort_helper([3]))
+print(quick_sort_helper([3, 2, 1]))
+print(quick_sort_helper([3, 6, 3, 3, 3, -1000, 35]))
+print(quick_sort_helper([3, 6, 3, 3, 3, -1000, 35]))
