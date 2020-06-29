@@ -20,7 +20,7 @@ def partition(array, l, r, y):
     s = j - k
     for i in range(k+1):
         swap(array, k, s)
-        s+=1
+        s=s+1
     return j-k,j
 
 def quick_sort(array, l, r, y):
@@ -33,7 +33,6 @@ def quick_sort_helper(array, y):
     length = len(array)
     quick_sort(array, 0, length - 1, y)
     return array
-
 
 listik = []
 n, m = map(int,input().split())
