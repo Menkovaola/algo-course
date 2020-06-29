@@ -4,33 +4,54 @@ def swap(array, a, b):
     array[b] = buf
 
 
-def partition(array, l, r):
+def partition(array, l, r, y):
     x = (l + r) // 2
     swap(array, l, x)
     j = l
+    k=l
     for i in range(l + 1, r + 1):
-        if array[i] < array[l]:
+        if array[i][y] < array[l][y]:
             j += 1
             swap(array, i, j)
-    swap(array, l, j)
-    return j
+        if array[i][y] == array[l][y]:
+            k += 1
+            j += 1
+            swap(array, i, k)
+    s = j - k
+    for i in range(k+1):
+        swap(array, k, s)
+        s+=1
+    return j-k,j
 
+def quick_sort(array, l, r, y):
+    while l < r:
+        n,m = partition(array, l, r, y)
+        quick_sort(array, l, n-1, y)
+        l=m+1
 
-def quick_sort(array, l, r):
-    if l < r:
-        m = partition(array, l, r)
-        quick_sort(array, l, m)
-        quick_sort(array, m + 1, r)
-
-
-def quick_sort_helper(array):
+def quick_sort_helper(array, y):
     length = len(array)
-    quick_sort(array, 0, length - 1)
+    quick_sort(array, 0, length - 1, y)
     return array
 
-print(quick_sort_helper([2, 6, 7, 2, 1]))
-print(quick_sort_helper([2, 6, 7, 3, 9, 2, 1]))
-print(quick_sort_helper([3]))
-print(quick_sort_helper([3, 2, 1]))
-print(quick_sort_helper([3, 6, 3, 3, 3, -1000, 35]))
-print(quick_sort_helper([3, 6, 3, 3, 3, -1000, 35]))
+
+listik = []
+n, m = map(int,input().split())
+for i in range(n):
+    listik.append(list(map(int, input().split())))
+dots=list(map(int,input().split()))
+
+sortedBeg = quick_sort_helper(listik, 0)
+sortedEnd = quick_sort_helper(listik, 1)
+
+for dot in dots:
+    case = []
+    for j in range(len(sortedBeg)):
+        if sortedBeg[j][0]<= dot:
+            case.append(sortedBeg[j])
+    for k in range(len(sortedEnd)):
+        if sortedEnd[k][1]< dot:
+            case.remove(sortedEnd[k])
+    print (len(case),end=' ')
+
+
